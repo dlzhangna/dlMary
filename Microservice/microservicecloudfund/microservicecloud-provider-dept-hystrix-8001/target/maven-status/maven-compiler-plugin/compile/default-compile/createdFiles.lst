@@ -1,0 +1,6 @@
+com\bjyt\springcloud\provider\config\DruidConfig.class
+com\bjyt\springcloud\provider\controller\FundController.class
+com\bjyt\springcloud\provider\service\FundService.class
+com\bjyt\springcloud\provider\service\impl\FundServiceImpl.class
+com\bjyt\springcloud\provider\FundProviderHystrix8001App.class
+com\bjyt\springcloud\provider\dao\FundDao.class

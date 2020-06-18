@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjyt.springcloud.provider.dao.FundDao">
+    <resultMap type="FundBasic" id="fundBasicResult">
+        <id property="Id" column="Id"/>
+        <result property="FundFullName" column="Fund_full_name"/>
+        <result property="FundSimpleName" column="Fund_simple_name"/>
+        <result property="FundCode" column="Fund_code"/>
+        <result property="FundType" column="Fund_type"/>
+        <result property="FundCompany" column="Fund_company"/>
+        <result property="EstablishmentDate" column="Establishment_date"/>
+        <result property="FundScale" column="Fund_scale"/>
+        <result property="FundHold" column="Fund_hold"/>
+        <result property="NetPrincipalValue" column="Net_principal_value"/>
+        <result property="YesterdayBenefit" column="Yesterday_Benefit"/>
+        <result property="HoldBenefit" column="Hold_Benefit"/>
+        <result property="HoldBenefitRate" column="Hold_Benefit_Rate"/>
+        <result property="BenefitReminder" column="Benefit_Reminder"/>
+        <result property="BonusType" column="Bonus_type"/>
+        <result property="TradeRule" column="Trade_rule"/>
+        <result property="InvestmentObjective" column="Investment_objective"/>
+        <result property="Announcement" column="Announcement"/>
+        <result property="DbSource" column="Db_source"/>
+    </resultMap>
+    <select id="findByFundCode" parameterType="String" resultMap="fundBasicResult">
+       SELECT * FROM  fund_basic WHERE  Fund_code = #{fundCode}
+    </select>
+
+    <select id="findFundAll" resultMap="fundBasicResult">
+        SELECT * FROM  fund_basic;
+    </select>
+    
+     <insert id="insertByParams" useGeneratedKeys="true" keyProperty="Id">
+        INSERT INTO fund_basic(Fund_full_name,Fund_simple_name,Fund_code,Fund_type,Fund_company,Establishment_date,Fund_scale,Fund_hold,Net_principal_value,Current_Net_value,Yesterday_Benefit,Hold_Benefit,Hold_Benefit_Rate,Benefit_Reminder,Bonus_type,Trade_rule,Investment_objective,Announcement,Db_source)
+        VALUES (#{FundFullName},#{FundSimpleName},#{FundCode},#{FundType},#{FundCompany},#{EstablishmentDate},#{FundScale},#{FundHold},#{NetPrincipalValue},#{CurrentNetValue},#{YesterdayBenefit},#{HoldBenefit},#{HoldBenefitRate},#{BenefitReminder},#{BonusType},#{TradeRule},#{InvestmentObjective},#{Announcement},DATABASE());   
+        <!--  
+        <selectKey resultType="long" order="AFTER" keyProperty="Id">
+            SELECT LAST_INSERT_ID() AS Id
+        </selectKey>
+        -->
+    </insert>
+    
+    <insert id="insertByEntity" parameterType="com.bjyt.springcloud.entity.FundBasic" useGeneratedKeys="true" keyProperty="FundBasic.Id">
+        INSERT INTO fund_basic(Fund_full_name,Fund_simple_name,Fund_code,Fund_type,Fund_company,Establishment_date,Fund_scale,Fund_hold,Net_principal_value,Current_Net_value,Yesterday_Benefit,Hold_Benefit,Hold_Benefit_Rate,Benefit_Reminder,Bonus_type,Trade_rule,Investment_objective,Announcement,Db_source)
+        VALUES (#{FundBasic.FundFullName},#{FundBasic.FundSimpleName},#{FundBasic.FundCode},#{FundBasic.FundType},#{FundBasic.FundCompany},#{FundBasic.EstablishmentDate},#{FundBasic.FundScale},#{FundBasic.FundHold},#{FundBasic.NetPrincipalValue},#{FundBasic.CurrentNetValue},#{FundBasic.YesterdayBenefit},#{FundBasic.HoldBenefit},#{FundBasic.HoldBenefitRate},#{FundBasic.BenefitReminder},#{FundBasic.BonusType},#{FundBasic.TradeRule},#{FundBasic.InvestmentObjective},#{FundBasic.Announcement},DATABASE());
+    </insert>
+    
+    <update id="updateByFundCode" parameterType="com.bjyt.springcloud.entity.FundBasic">
+        UPDATE fund_basic 
+        SET Fund_full_name=#{FundBasic.FundFullName},Fund_simple_name=#{FundBasic.FundSimpleName} WHERE  Fund_code = #{FundBasic.FundCode}
+    </update>
+    
+     <delete id="deleteByFundCode">
+        Delete FROM fund_basic WHERE Fund_code = #{fundCode}
+    </delete>
+</mapper>

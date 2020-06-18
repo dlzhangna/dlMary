@@ -1,0 +1,16 @@
+spring:
+  #profiles: dev
+  application:
+    name: microservicecloud-config-eureka-server-dev
+    
+server:
+  port: 1001
+  
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:1001/eureka/

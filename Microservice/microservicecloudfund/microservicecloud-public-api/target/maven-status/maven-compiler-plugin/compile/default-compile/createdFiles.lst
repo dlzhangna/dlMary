@@ -1,0 +1,5 @@
+com\bjyt\springcloud\util\FundUtil.class
+com\bjyt\springcloud\service\FundBasicClientService.class
+com\bjyt\springcloud\service\FundBasicClientServiceFallbackFactory$1.class
+com\bjyt\springcloud\service\FundBasicClientServiceFallbackFactory.class
+com\bjyt\springcloud\entity\FundBasic.class
